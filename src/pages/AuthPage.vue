@@ -15,7 +15,7 @@
   </form>
 </template>
 
-<script>
+<script lang="ts">
 import BaseButton from "../UI/BaseButton.vue";
 import {computed, ref} from "vue";
 import {useAuthStore} from "../store/authStore";
@@ -70,7 +70,7 @@ export default {
           auth.signup(actionPayload)
         }
         router.push('/');
-      } catch (e) {
+      } catch (e: any) {
         error.value = e.message;
       }
       isLoading.value = false;

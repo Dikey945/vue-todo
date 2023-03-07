@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "homepage": "https://Dikey945.github.io/vue-todo",
+    "deploy" : "gh-pages -d dist",
+    "publish": "gh-pages -d index.html ./src"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.3.0",
@@ -14,6 +17,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.3.0",
     "@fortawesome/free-solid-svg-icons": "^6.3.0",
     "@fortawesome/vue-fontawesome": "^3.0.3",
+    "@mate-academy/scripts": "^1.2.8",
     "@vueuse/core": "^9.13.0",
     "font-awesome": "^4.7.0",
     "gh-pages": "^5.0.0",

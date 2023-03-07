@@ -10,7 +10,7 @@ interface State {
 export interface Todo {
   id: string;
   text: string;
-  done: boolean;
+  done: any;
 }
 
 export interface User{

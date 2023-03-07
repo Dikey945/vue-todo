@@ -21,7 +21,7 @@
 
 </template>
 
-<script>
+<script lang="ts">
 
 import BaseButton from "./BaseButton.vue";
 import {computed, nextTick, ref, toRef} from "vue";
@@ -45,11 +45,11 @@ export default {
 
     const text = props.text
     const eddInput = ref(text)
-    const todos = computed(() => todosStore.user.todos)
+    const todos = computed(() => todosStore.user!.todos)
 
     function deleteTodo() {
       todosStore.deleteTodo(props.id)
-      console.log(todosStore.user.todos)
+      console.log(todosStore.user!.todos)
     }
 
     function editTodo() {
@@ -71,7 +71,7 @@ export default {
     function toggleCompleted() {
       todosStore.toggleDone(id.value)
       console.log(id.value)
-      console.log(todosStore.user.todos)
+      console.log(todosStore.user!.todos)
     }
 
 

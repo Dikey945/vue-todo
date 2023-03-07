@@ -17,9 +17,9 @@
   </header>
 </template>
 
-<script>
+<script lang="ts">
   import BaseButton from '../UI/BaseButton.vue';
-  import {useAuthStore} from "../store/authStore.ts";
+  import {useAuthStore} from "../store/authStore";
   import {ref} from "vue";
 
   export default {

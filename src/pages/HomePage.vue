@@ -6,7 +6,7 @@
   </section>
 </template>
 
-<script>
+<script lang="ts">
   import TodoForm from "../components/TodoForm.vue";
   import TodosList from "../components/TodosList.vue";
   import {useAuthStore} from "../store/authStore";

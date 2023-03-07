@@ -10,7 +10,7 @@
   </section>
 </template>
 
-<script>
+<script lang="ts">
 import BaseCart from "../UI/BaseCard.vue";
 import { useAuthStore } from '../store/authStore'
 import {computed} from "vue";
@@ -19,7 +19,7 @@ export default {
   components: {BaseCart},
   setup() {
     const authStore = useAuthStore()
-    const todos = computed(() => authStore.user.todos)
+    const todos = computed(() => authStore.user!.todos)
     return { todos };
   }
 }
