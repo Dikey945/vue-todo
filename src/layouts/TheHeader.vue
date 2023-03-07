@@ -3,20 +3,13 @@
     <div class="text-xl text-white">Logo</div>
     <nav class="">
       <ul class="flex ">
-        <li>
-          <router-link to="">Completed</router-link>
+
+        <li v-if="!auth.isLogged">
+          <router-link to="/auth">login</router-link>
         </li>
 
         <li>
-          <router-link to="">Active</router-link>
-        </li>
-
-        <li>
-          <router-link to="">login</router-link>
-        </li>
-
-        <li>
-          <base-button v-if="auth.isLogged">logout</base-button>
+          <base-button @click="logout" v-if="auth.isLogged">logout</base-button>
         </li>
       </ul>
 
@@ -34,9 +27,12 @@
   name: "TheHeader",
   setup() {
     const auth = ref(useAuthStore())
-    console.log(auth)
+    function logout() {
+      auth.value.logout()
+    }
     return {
-      auth
+      auth,
+      logout
     }
   }
 }
@@ -45,5 +41,20 @@
 <style scoped>
   li {
     margin: 0 0.5rem;
+  }
+  header a {
+    text-decoration: none;
+    color: white;
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid white;
+    border-radius: 10px;
+  }
+
+  a:active,
+  a:hover,
+  a.router-link-active {
+    border: 1px solid yellow;
+    color: yellow
   }
 </style>

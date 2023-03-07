@@ -5,6 +5,7 @@
 
 <script lang="ts">
  import TheHeader from "./layouts/TheHeader.vue";
+
   export default {
     components: {
       TheHeader,

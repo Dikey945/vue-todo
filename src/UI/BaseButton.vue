@@ -1,7 +1,7 @@
 <template>
   <button
-      :class="mode ? 'bg-green-400' : 'bg-white' "
-      class="rounded-xl px-[10px] py-[5px] block border-gray-500"
+      :class="mode ? 'bg-green-400' : 'bg-transparent' "
+      class="logout"
   >
     <slot></slot>
   </button>
@@ -22,5 +22,18 @@ export default {
 </script>
 
 <style scoped>
+  .logout {
+    color: white;
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid white;
+    border-radius: 10px;
+  }
 
+  .logout:hover,
+  .logout:active {
+    border: 1px solid yellow;
+    color: yellow
+
+  }
 </style>

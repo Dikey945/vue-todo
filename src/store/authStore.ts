@@ -1,16 +1,23 @@
 import {defineStore} from "pinia";
 import {usersDB} from "./usersDB";
-import {useStorage} from "@vueuse/core";
 
 interface State {
   isLoggedIn: boolean;
   user: User | null;
+
 }
 
-interface User{
+export interface Todo {
+  id: string;
+  text: string;
+  done: boolean;
+}
+
+export interface User{
   id: string;
   email: string;
   password: string;
+  todos: Todo[];
 }
 export const useAuthStore = defineStore('auth',{
   state: (): State => ({
@@ -25,23 +32,56 @@ export const useAuthStore = defineStore('auth',{
         }
       }
       usersDB.push(user);
-      this.login(user);
+      this.login(user.email, user.password);
     },
-    login(user: User){
+    login(email: string, password: string){
       if (!this.isLogged) {
-        this.isLoggedIn = true;
-        this.user = user;
-        useStorage('isLoggedIn', true)
+        const loggedUser: User | undefined = usersDB.find(user => user.email === email && user.password === password);
+        if (loggedUser !== undefined) {
+          this.isLoggedIn = true;
+          this.user = loggedUser;
+          localStorage.setItem('isLoggedIn', "true")
+          localStorage.setItem('user', JSON.stringify(loggedUser))
+        }
+
+      }
+    },
+    autoLogin(){
+      const loggedUser = localStorage.getItem('user');
+      if (loggedUser) {
+        const user = JSON.parse(loggedUser);
+        this.login(user.email, user.password);
       }
     },
     logout(){
       this.isLoggedIn = false;
       this.user = null;
+      localStorage.setItem('isLoggedIn', "true")
+      console.log('Setted to false')
+      localStorage.setItem('user', JSON.stringify(this.user))
+    },
+    addTodo(newTodo: Todo){
+      this.user!.todos.unshift(newTodo);
+    },
+    deleteTodo(id: string){
+      this.user!.todos = this.user!.todos.filter(todo => todo.id !== id)
+    },
+    editTodo(editedTodo: Todo){
+      const todo = this.user!.todos.find(todo => todo.id === editedTodo.id);
+      if (todo) {
+        todo.text = editedTodo.text;
+      }
+    },
+    toggleDone(id: string){
+      const todo = this.user!.todos.find(todo => todo.id === id);
+      if (todo) {
+        todo.done = !todo.done;
+      }
     }
   },
   getters: {
     isLogged(): boolean {
-      return this.isLogged;
+      return this.isLoggedIn;
     }
   }
 })
