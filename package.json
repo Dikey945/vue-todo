@@ -16,6 +16,7 @@
     "@fortawesome/vue-fontawesome": "^3.0.3",
     "@vueuse/core": "^9.13.0",
     "font-awesome": "^4.7.0",
+    "gh-pages": "^5.0.0",
     "pinia": "^2.0.33",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6"
